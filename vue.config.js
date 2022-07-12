@@ -1,7 +1,3 @@
-/**
- * @author YangLing
- * @date 2022/7/11 09:29
- */
 module.exports = {
   publicPath: './',
   devServer: {

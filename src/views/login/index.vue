@@ -18,7 +18,6 @@
             v-model.trim="loginForm.password"
             show-password
             placeholder="请输入密码"
-            suffix-icon="el-icon-s-goods"
           ></el-input>
         </el-form-item>
         <el-form-item prop="code">
@@ -137,7 +136,7 @@ export default {
   right: 0;
   bottom: 0; */
   font-family: Verdana;
-  background-size: cover;
+  /* background-size: cover; */
   background: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F911%2F0RQ5122445%2F150RQ22445-7-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660180018&t=91989361cbf2577d1637093e13b7cf48') no-repeat;
   background-size: 100% 100%;
 }
