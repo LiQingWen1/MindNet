@@ -130,26 +130,30 @@ export default {
 <style scoped>
 .login-container {
   position: fixed;
-  top: 0;
+  width: 100%;
+  height: 100%;
+  /* top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   font-family: Verdana;
   background-size: cover;
-  background: url('../../assets/images/bg.jpg') no-repeat fixed center;
+  background: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F911%2F0RQ5122445%2F150RQ22445-7-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660180018&t=91989361cbf2577d1637093e13b7cf48') no-repeat;
+  background-size: 100% 100%;
 }
 h1 {
   text-align: center;
   font-size: 42px;
-  margin-top: 50px;
-  color: #fff;
+  margin-top: 70px;
+  color: #000;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
 h2 {
-  color: #fff;
+  color: #000;
   font-size: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 .login-form {
   margin: 10% auto 13%;
