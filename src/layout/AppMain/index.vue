@@ -16,7 +16,7 @@
     </h1>
     <el-container>
       <el-main>
-        <el-table :data="tableData">
+        <el-table :data="tableData" border style="width: 100%">
           <el-table-column
             prop="code"
             label="序号"
@@ -33,20 +33,13 @@
           <el-table-column prop="updateTime" label="注册时间" width="140">
           </el-table-column>
           <el-table-column prop="status" label="状态" width="140">
-            <el-switch
-              v-model="value2"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-            >
+            <el-switch active-color="#13ce66" inactive-color="#ff4949">
             </el-switch>
           </el-table-column>
         </el-table>
       </el-main>
     </el-container>
     <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage4"
       :page-sizes="[5, 10, 15, 20]"
       :page-size="5"
       layout="total, sizes, prev, pager, next, jumper"

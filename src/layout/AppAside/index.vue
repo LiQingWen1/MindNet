@@ -1,8 +1,8 @@
 <template>
   <div class="aside-container">
     <el-menu
-      default-active="0"
-      text-color="#000"
+      background-color="#222d32"
+      text-color="#fff"
       active-text-color="#ffd04b">
       <el-menu-item index="0">
         <i class="el-icon-setting"></i>

@@ -6,6 +6,7 @@ import { Message } from 'element-ui'
 
 // 导入自定义消息提示
 import exceptionMessage from './exception-message'
+import { getItem } from '../utils/storage'
 
 // 创建axios实例对象
 const service = axios.create({
@@ -16,6 +17,10 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {
+    const token = getItem('token')
+    if (token) {
+      config.headers.token = token
+    }
     return config
   },
   (error) => {
@@ -32,7 +37,6 @@ service.interceptors.response.use(
     _showErrorMessage(response.data.code, response.data.msg)
   },
   (error) => {
-    console.log('2')
     return Promise.reject(error)
   }
 )

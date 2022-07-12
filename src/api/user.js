@@ -30,7 +30,12 @@ const login = (data) => {
     method: 'POST'
   })
 }
-
+export const getNav = () => {
+  return request({ url: '/menu/nav', method: 'get' })
+}
+export const getInfo = () => {
+  return request({ url: '/user/info', method: 'get' })
+}
 /**
  * 导出api接口
  */

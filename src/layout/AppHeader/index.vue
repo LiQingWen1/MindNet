@@ -1,28 +1,72 @@
 <template>
-  <div class="head">
-    <div class="right">
-      <el-container>
-        <el-header style="text-align: right; font-size: 12px">
-          <el-dropdown>
-            <i class="el-icon-rank" style="font-size: 20px"></i>
-            <i class="el-icon-circle-close" style="font-size: 20px"></i>
-            <span>Duck</span>
-            <i class="el-icon-arrow-down" style="margin-right: 15px"></i>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人设置</el-dropdown-item>
-              <el-dropdown-item command="logOut">安全退出</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </el-header>
-      </el-container>
+  <div class="headers">
+    <div class="header-sort">
+      <el-dropdown>
+        <span class="el-dropdown-link" :username="username">
+          <!-- <el-avatar :src="circleUrl"></el-avatar> -->
+          duck<i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>个人中心</el-dropdown-item>
+          <el-dropdown-item @click.native="withdrawing"
+            >安全退出</el-dropdown-item
+          >
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
 
 <script>
+import { removeItem } from '@/utils/storage'
+import { getInfo } from '@/api/user'
 export default {
-  name: 'index'
+  data() {
+    return {
+      username: '',
+      circleUrl: '',
+      sizeList: ['large', 'medium', 'small']
+    }
+  },
+  methods: {
+    withdrawing() {
+      console.log(1)
+      this.$router.push('/login')
+      removeItem('token')
+    }
+  },
+  created() {
+    getInfo().then((res) => {
+      console.log(res)
+      this.username = res.username
+      this.circleUrl = res.avtar
+    })
+  },
+  mounted() {},
+  components: {},
+  computed: {},
+  watch: {}
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.header-sort {
+  display: flex;
+  align-items: center;
+  .el-dropdown {
+    position: fixed;
+    right: 20px;
+    top: 0px;
+  }
+  span {
+    color: #fff;
+    font-size: 20px;
+  }
+}
+.el-icon-s-fold {
+  font-size: 20px;
+}
+.el-avatar {
+  margin-top: 10px;
+}
+</style>

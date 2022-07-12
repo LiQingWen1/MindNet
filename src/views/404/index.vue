@@ -1,10 +1,9 @@
 <template>
-    <div class=''>404</div>
+  <div class="">
+    <template> <el-empty description="description" />404 </template>
+  </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style lang='scss' scoped>
-
-</style>
+<style lang="scss" scoped></style>
