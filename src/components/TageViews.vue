@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">控制台</div>
+  <div><span style="color:#ffffff">首页</span></div>
 </template>
 
 <script>

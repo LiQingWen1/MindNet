@@ -1,10 +1,12 @@
 <template>
   <div class="headers">
+    <tage-views></tage-views>
     <div class="header-sort">
       <el-dropdown>
-        <span class="el-dropdown-link" :username="username">
-          <!-- <el-avatar :src="circleUrl"></el-avatar> -->
-          duck<i class="el-icon-arrow-down el-icon--right"></i>
+        <span class="el-dropdown-link">
+          <el-avatar :size="40" :src="circleUrl"></el-avatar>
+          <span>{{ username }}</span
+          ><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
@@ -19,13 +21,14 @@
 
 <script>
 import { removeItem } from '@/utils/storage'
-import { getInfo } from '@/api/user'
+import { getInfo } from '../../api/user'
+import TageViews from '../../components/TageViews.vue'
 export default {
   data() {
     return {
       username: '',
       circleUrl: '',
-      sizeList: ['large', 'medium', 'small']
+      sizeList: ['small']
     }
   },
   methods: {
@@ -37,13 +40,15 @@ export default {
   },
   created() {
     getInfo().then((res) => {
-      console.log(res)
+      // console.log(res)
       this.username = res.username
-      this.circleUrl = res.avtar
+      this.circleUrl = res.avatar
     })
   },
   mounted() {},
-  components: {},
+  components: {
+    TageViews
+  },
   computed: {},
   watch: {}
 }
@@ -53,20 +58,26 @@ export default {
 .header-sort {
   display: flex;
   align-items: center;
+  line-height: 50px;
   .el-dropdown {
     position: fixed;
     right: 20px;
     top: 0px;
   }
   span {
+    display: inline-block;
+    height: 100%;
     color: #fff;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .el-icon-s-fold {
   font-size: 20px;
 }
 .el-avatar {
-  margin-top: 10px;
+  margin-right: 10px;
 }
 </style>

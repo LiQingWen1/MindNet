@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">控制台</div>
+  <div class="menus">菜单管理</div>
 </template>
 
 <script>

@@ -36,6 +36,9 @@ export const getNav = () => {
 export const getInfo = () => {
   return request({ url: '/user/info', method: 'get' })
 }
+export const getList = () => {
+  return request({ url: '/user/list', method: 'get' })
+}
 /**
  * 导出api接口
  */
