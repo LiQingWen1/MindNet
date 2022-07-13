@@ -1,5 +1,5 @@
 <template>
-  <div class="aside-container">
+  <div class="aside">
     <el-menu
       background-color="#222d32"
       text-color="#fff"
@@ -41,6 +41,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.aside {
+  width: 100%;
+  height: 100vh;
+  background: #222d32;
+}
 .el-menu{
   background-color: $aside-bg-color;
 }

@@ -1,18 +1,30 @@
 <template>
-  <div class="headers">
-    <tage-views></tage-views>
-    <div class="header-sort">
-      <el-dropdown>
+  <div class="header-content">
+    <div class="header-left"></div>
+    <div class="header-right">
+      <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
+        <i class="el-icon-rank" />
+      </el-tooltip>
+
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="关闭全部标签"
+        placement="bottom"
+      >
+        <i class="el-icon-circle-close" />
+      </el-tooltip>
+
+      <div class="block">
+        <el-avatar :size="40" :src="circleUrl"></el-avatar>
+      </div>
+      <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          <el-avatar :size="40" :src="circleUrl"></el-avatar>
-          <span>{{ username }}</span
-          ><i class="el-icon-arrow-down el-icon--right"></i>
+          {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item @click.native="withdrawing"
-            >安全退出</el-dropdown-item
-          >
+          <el-dropdown-item>个人设置</el-dropdown-item>
+          <el-dropdown-item command="quit">安全退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -20,64 +32,81 @@
 </template>
 
 <script>
-import { removeItem } from '@/utils/storage'
 import { getInfo } from '../../api/user'
-import TageViews from '../../components/TageViews.vue'
 export default {
   data() {
     return {
-      username: '',
       circleUrl: '',
-      sizeList: ['small']
+      username: ''
     }
   },
   methods: {
-    withdrawing() {
-      console.log(1)
+    /**
+     * 获取用户信息
+     */
+    async userInfo() {
+      const { avatar, username } = await getInfo()
+      // console.log(response)
+      this.circleUrl = avatar
+      this.username = username
+    },
+    /**
+     * 退出登录
+     */
+    handleCommand(command) {
+      this.quit()
+    },
+    quit() {
+      console.log(1111)
+      localStorage.removeItem('token')
+      this.$notify({
+        title: '提示',
+        message: '退出成功',
+        type: 'success'
+      })
       this.$router.push('/login')
-      removeItem('token')
     }
   },
   created() {
-    getInfo().then((res) => {
-      // console.log(res)
-      this.username = res.username
-      this.circleUrl = res.avatar
-    })
+    this.userInfo()
   },
   mounted() {},
-  components: {
-    TageViews
-  },
+  components: {},
   computed: {},
   watch: {}
 }
 </script>
 
 <style lang="scss" scoped>
-.header-sort {
+.header-content {
+  cursor: pointer;
   display: flex;
-  align-items: center;
-  line-height: 50px;
-  .el-dropdown {
-    position: fixed;
-    right: 20px;
-    top: 0px;
-  }
-  span {
-    display: inline-block;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  .header-left {
+    width: 400px;
     height: 100%;
-    color: #fff;
-    font-size: 20px;
+    background-color: #fff;
+  }
+  .header-right {
+    color: white;
+    .block {
+      margin-right: 10px;
+      margin-top: 22px;
+    }
+    i {
+      font-size: 24px;
+      margin: 0 10px;
+    }
+    .el-dropdown-link {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
   }
-}
-.el-icon-s-fold {
-  font-size: 20px;
-}
-.el-avatar {
-  margin-right: 10px;
 }
 </style>

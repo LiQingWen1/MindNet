@@ -40,6 +40,20 @@ export const getList = () => {
   return request({ url: '/user/list', method: 'get' })
 }
 /**
+ * 角色列表
+ *  @returns
+ */
+export const getRoleList = () => {
+  return request({ url: 'role/list', method: 'GET' })
+}
+/**
+ * 菜单列表
+ * @returns
+ */
+export const getMenuList = () => {
+  return request({ url: 'menu/list', method: 'GET' })
+}
+/**
  * 导出api接口
  */
 export default {

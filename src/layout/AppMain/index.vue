@@ -1,34 +1,27 @@
 <template>
-  <div class="main">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/profile' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item><a href="/">用户管理</a></el-breadcrumb-item>
-    </el-breadcrumb>
-    <router-view />
+  <div>
+    <crumbs class="crumbs"></crumbs>
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
+import crumbs from '../../components/crumbs.vue'
 export default {
   data() {
     return {}
   },
-  methods: {},
-  created() {},
-  mounted() {},
-  components: {},
-  computed: {},
-  watch: {}
+  methods: {}, //  事件方法
+  created() {}, //  页面加载时调用
+  mounted() {}, //  页面加载后操作DOM节点
+  components: {
+    crumbs
+  }
 }
 </script>
-
 <style lang="scss" scoped>
-.main {
-  height: 100%;
-  padding: 25px;
+.crumbs{
   background-color: #fff;
-}
-.el-breadcrumb{
-  margin-bottom: 20px;
+  // height: 30px;
+  padding: 20px;
 }
 </style>
